@@ -94,10 +94,11 @@ class Scheduler
     /**
      * Queues a function execution.
      *
-     * @param  callable  $fn  The function to execute
-     * @param  array  $args  Optional arguments to pass to the php script
-     * @param  string  $id   Optional custom identifier
+     * @param  callable $fn The function to execute
+     * @param  array $args Optional arguments to pass to the php script
+     * @param  string $id Optional custom identifier
      * @return Job
+     * @throws InvalidArgumentException
      */
     public function call(callable $fn, $args = [], $id = null)
     {
@@ -111,11 +112,12 @@ class Scheduler
     /**
      * Queues a php script execution.
      *
-     * @param  string  $script  The path to the php script to execute
-     * @param  string  $bin     Optional path to the php binary
-     * @param  array  $args     Optional arguments to pass to the php script
-     * @param  string  $id      Optional custom identifier
+     * @param  string $script The path to the php script to execute
+     * @param  string $bin Optional path to the php binary
+     * @param  array $args Optional arguments to pass to the php script
+     * @param  string $id Optional custom identifier
      * @return Job
+     * @throws InvalidArgumentException
      */
     public function php($script, $bin = null, $args = [], $id = null)
     {
@@ -143,10 +145,11 @@ class Scheduler
     /**
      * Queue a raw shell command.
      *
-     * @param  string  $command  The command to execute
-     * @param  array  $args      Optional arguments to pass to the command
-     * @param  string  $id       Optional custom identifier
+     * @param  string $command The command to execute
+     * @param  array $args Optional arguments to pass to the command
+     * @param  string $id Optional custom identifier
      * @return Job
+     * @throws InvalidArgumentException
      */
     public function raw($command, $args = [], $id = null)
     {
@@ -160,8 +163,9 @@ class Scheduler
     /**
      * Run the scheduler.
      *
-     * @param  DateTime  $runTime  Optional, run at specific moment
+     * @param  DateTime $runTime Optional, run at specific moment
      * @return array  Executed jobs
+     * @throws Exception
      */
     public function run(Datetime $runTime = null)
     {
@@ -203,8 +207,9 @@ class Scheduler
     /**
      * Add an entry to the scheduler verbose output array.
      *
-     * @param  string  $string
+     * @param  string $string
      * @return void
+     * @throws Exception
      */
     private function addSchedulerVerboseOutput($string)
     {
@@ -218,8 +223,9 @@ class Scheduler
     /**
      * Push a succesfully executed job.
      *
-     * @param  Job  $job
+     * @param  Job $job
      * @return Job
+     * @throws Exception
      */
     private function pushExecutedJob(Job $job)
     {
@@ -250,9 +256,10 @@ class Scheduler
     /**
      * Push a failed job.
      *
-     * @param  Job  $job
-     * @param  Exception  $e
+     * @param  Job $job
+     * @param  Exception $e
      * @return Job
+     * @throws Exception
      */
     private function pushFailedJob(Job $job, Exception $e)
     {
@@ -283,8 +290,9 @@ class Scheduler
     /**
      * Get the scheduler verbose output.
      *
-     * @param  string  $type  Allowed: text, html, array
+     * @param  string $type Allowed: text, html, array
      * @return mixed  The return depends on the requested $type
+     * @throws InvalidArgumentException
      */
     public function getVerboseOutput($type = 'text')
     {

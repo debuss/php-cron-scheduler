@@ -24,6 +24,7 @@ trait Interval
      *
      * @param  string/DateTime  $date
      * @return self
+     * @throws \Exception
      */
     public function date($date)
     {
@@ -49,8 +50,9 @@ trait Interval
     /**
      * Set the execution time to every hour.
      *
-     * @param  int|string  $minute
+     * @param  int|string $minute
      * @return self
+     * @throws InvalidArgumentException
      */
     public function hourly($minute = 0)
     {
@@ -62,9 +64,10 @@ trait Interval
     /**
      * Set the execution time to once a day.
      *
-     * @param  int|string  $hour
-     * @param  int|string  $minute
+     * @param  int|string $hour
+     * @param  int|string $minute
      * @return self
+     * @throws InvalidArgumentException
      */
     public function daily($hour = 0, $minute = 0)
     {
@@ -82,10 +85,11 @@ trait Interval
     /**
      * Set the execution time to once a week.
      *
-     * @param  int|string  $weekday
-     * @param  int|string  $hour
-     * @param  int|string  $minute
+     * @param  int|string $weekday
+     * @param  int|string $hour
+     * @param  int|string $minute
      * @return self
+     * @throws InvalidArgumentException
      */
     public function weekly($weekday = 0, $hour = 0, $minute = 0)
     {
@@ -103,11 +107,12 @@ trait Interval
     /**
      * Set the execution time to once a month.
      *
-     * @param  int|string  $month
-     * @param  int|string  $day
-     * @param  int|string  $hour
-     * @param  int|string  $minute
+     * @param  int|string $month
+     * @param  int|string $day
+     * @param  int|string $hour
+     * @param  int|string $minute
      * @return self
+     * @throws InvalidArgumentException
      */
     public function monthly($month = '*', $day = 1, $hour = 0, $minute = 0)
     {
@@ -365,12 +370,13 @@ trait Interval
     /**
      * Validate sequence of cron expression.
      *
-     * @param  int|string  $minute
-     * @param  int|string  $hour
-     * @param  int|string  $day
-     * @param  int|string  $month
-     * @param  int|string  $weekday
+     * @param  int|string $minute
+     * @param  int|string $hour
+     * @param  int|string $day
+     * @param  int|string $month
+     * @param  int|string $weekday
      * @return array
+     * @throws InvalidArgumentException
      */
     private function validateCronSequence($minute = null, $hour = null, $day = null, $month = null, $weekday = null)
     {
@@ -386,10 +392,11 @@ trait Interval
     /**
      * Validate sequence of cron expression.
      *
-     * @param  int|string  $value
-     * @param  int         $min
-     * @param  int         $max
+     * @param  int|string $value
+     * @param  int $min
+     * @param  int $max
      * @return mixed
+     * @throws InvalidArgumentException
      */
     private function validateCronRange($value, $min, $max)
     {
@@ -405,6 +412,6 @@ trait Interval
             );
         }
 
-        return $value;
+        return (int)$value;
     }
 }

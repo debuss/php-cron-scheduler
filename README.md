@@ -1,6 +1,9 @@
 PHP Cron Scheduler
 ==
 
+_Note : This fork is made to use the Pull Request [#48](https://github.com/peppeocchi/php-cron-scheduler/pull/48) as it is not yet in an official release._  
+_Required-devs have been removed, keep it simple._ 
+
 [![Latest Stable Version](https://poser.pugx.org/peppeocchi/php-cron-scheduler/v/stable)](https://packagist.org/packages/peppeocchi/php-cron-scheduler) [![License](https://poser.pugx.org/peppeocchi/php-cron-scheduler/license)](https://packagist.org/packages/peppeocchi/php-cron-scheduler) [![Build Status](https://travis-ci.org/peppeocchi/php-cron-scheduler.svg)](https://travis-ci.org/peppeocchi/php-cron-scheduler) [![Coverage Status](https://coveralls.io/repos/github/peppeocchi/php-cron-scheduler/badge.svg?branch=v2.x)](https://coveralls.io/github/peppeocchi/php-cron-scheduler?branch=v2.x) [![StyleCI](https://styleci.io/repos/38302733/shield)](https://styleci.io/repos/38302733) [![Total Downloads](https://poser.pugx.org/peppeocchi/php-cron-scheduler/downloads)](https://packagist.org/packages/peppeocchi/php-cron-scheduler)
 
 This is a framework agnostic cron jobs scheduler that can be easily integrated with your project or run as a standalone command scheduler.
@@ -125,7 +128,7 @@ $scheduler->call(
 There are a few methods to help you set the execution time of your schedules.
 If you don't call any of this method, the job will run every minute (* * * * *).
 
-- `at` - This method accepts any expression supported by [mtdowling/cron-expression](https://github.com/mtdowling/cron-expression)
+- `at` - This method accepts any expression supported by [dragonmantank/cron-expression](https://github.com/dragonmantank/cron-expression)
     ```php
     $scheduler->php('script.php')->at('* * * * *');
     ```

@@ -146,9 +146,10 @@ class Job
     /**
      * Create a new Job instance.
      *
-     * @param  string|callable  $command
-     * @param  array            $args
-     * @param  string           $id
+     * @param  string|callable $command
+     * @param  array $args
+     * @param  string $id
+     * @throws Exception
      */
     public function __construct($command, $args = [], $id = null)
     {
@@ -328,8 +329,9 @@ class Job
     /**
      * Configure the job.
      *
-     * @param  array  $config
+     * @param  array $config
      * @return self
+     * @throws InvalidArgumentException
      */
     public function configure(array $config = [])
     {
@@ -365,6 +367,7 @@ class Job
      * Run the job.
      *
      * @return bool
+     * @throws Exception
      */
     public function run()
     {
@@ -492,8 +495,9 @@ class Job
      * The Job should be set to write output to a file
      * for this to work.
      *
-     * @param  string|array  $email
+     * @param  string|array $email
      * @return self
+     * @throws InvalidArgumentException
      */
     public function email($email)
     {
